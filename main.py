@@ -13,12 +13,21 @@ with open(budget_csv, 'r') as csvfile:
     header = next(csvreader)
     count = 0
     total = 0
+    gidate = ""
+    giamount = 0
     
     
     # Loop through the data
     for row in csvreader:
         count = count + 1
         total = total + int(row[1])
-        
+        if count == 1:
+            gidate = row[0]
+            giamount = int(row[1])
+        if giamount < int(row[1]):
+            giamount = int(row[1])
+            gidate = row[0]
 print(count)
 print(total)
+print(giamount)
+print(gidate)
