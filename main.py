@@ -15,19 +15,29 @@ with open(budget_csv, 'r') as csvfile:
     total = 0
     gidate = ""
     giamount = 0
-    
+    gddate = ""
+    gdamount = 0
     
     # Loop through the data
     for row in csvreader:
         count = count + 1
         total = total + int(row[1])
-        if count == 1:
+        if count == 1 and int(row[1]) > 0:
             gidate = row[0]
             giamount = int(row[1])
-        if giamount < int(row[1]):
+        if giamount < int(row[1]) and int(row[1]) > 0:
             giamount = int(row[1])
             gidate = row[0]
+        if count == 1 and int(row[1]) < 0:
+            gddate = row[0]
+            gdamount = int(row[1])
+        if gdamount > int(row[1]) and int(row[1]) < 0:    
+            gddate = row[0]
+            gdamount = int(row[1])
+            
 print(count)
 print(total)
 print(giamount)
 print(gidate)
+print(gdamount)
+print(gddate)
