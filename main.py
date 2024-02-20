@@ -11,33 +11,40 @@ with open(budget_csv, 'r') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
     header = next(csvreader)
+    months = []
+    profit = []
+    
     count = 0
     total = 0
     gidate = ""
     giamount = 0
     gddate = ""
     gdamount = 0
-    
+    average = 0
     # Loop through the data
     for row in csvreader:
+        months.append(row[0])
+        profit.append(int(row[1]))
         count = count + 1
         total = total + int(row[1])
-        if count == 1 and int(row[1]) > 0:
-            gidate = row[0]
-            giamount = int(row[1])
-        if giamount < int(row[1]) and int(row[1]) > 0:
-            giamount = int(row[1])
-            gidate = row[0]
-        if count == 1 and int(row[1]) < 0:
-            gddate = row[0]
-            gdamount = int(row[1])
-        if gdamount > int(row[1]) and int(row[1]) < 0:    
-            gddate = row[0]
-            gdamount = int(row[1])
+    
+    for i in range(1,len(months)):    
+        
+        if profit[i]-profit[i-1] > giamount:
+            gidate = months[i]
+            giamount = profit[i]-profit[i-1]
+        
+        
+        if profit[i]-profit[i-1] < gdamount:   
+            gddate = months[i]
+            gdamount = profit[i]-profit[i-1]
             
+    average = total/count        
+
 print(count)
 print(total)
 print(giamount)
 print(gidate)
 print(gdamount)
 print(gddate)
+print(average)
