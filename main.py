@@ -16,6 +16,7 @@ with open(budget_csv, 'r') as csvfile:
     
     count = 0
     total = 0
+    totalchange = 0
     gidate = ""
     giamount = 0
     gddate = ""
@@ -27,9 +28,9 @@ with open(budget_csv, 'r') as csvfile:
         profit.append(int(row[1]))
         count = count + 1
         total = total + int(row[1])
-    
-    for i in range(1,len(months)):    
         
+    for i in range(1,len(months)):    
+        totalchange = totalchange + (profit[i]-profit[i-1])
         if profit[i]-profit[i-1] > giamount:
             gidate = months[i]
             giamount = profit[i]-profit[i-1]
@@ -39,7 +40,7 @@ with open(budget_csv, 'r') as csvfile:
             gddate = months[i]
             gdamount = profit[i]-profit[i-1]
             
-    average = total/count        
+    average = totalchange/(count-1)        
 
 print(count)
 print(total)
