@@ -12,10 +12,13 @@ with open(budget_csv, 'r') as csvfile:
 
     header = next(csvreader)
     count = 0
-    print(csvreader)
+    total = 0
+    
     
     # Loop through the data
     for row in csvreader:
         count = count + 1
+        total = total + int(row[1])
         
-print(count)   
+print(count)
+print(total)
