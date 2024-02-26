@@ -50,3 +50,16 @@ print("Average Change: $" + "%.2f" % average)
 print("Greatest Increase in Profits: " + str(gidate) + " $" + str(giamount))
 print("Greatest Decrease in Profits: " + str(gddate) + " $" + str(gdamount))
 
+results =  os.path.join('.', 'pybank', 'analysis', 'results.txt')
+
+f = open(results, 'w')
+
+f.writelines("\nFinancial Analysis")
+f.writelines("\n----------------------------")
+f.writelines("\nTotal Months: " + str(count))
+f.writelines("\nTotal: $" + str(total))
+f.writelines("\nAverage Change: $" + "%.2f" % average)
+f.writelines("\nGreatest Increase in Profits: " + str(gidate) + " $" + str(giamount))
+f.writelines("\nGreatest Decrease in Profits: " + str(gddate) + " $" + str(gdamount))
+
+f.close()
