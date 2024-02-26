@@ -48,4 +48,25 @@ print("----------------------------")
 print("Winner: "+ winner)
 print("----------------------------")
 
-# f = open('workfile', 'w', encoding="utf-8")
+
+
+results = os.path.join('.', 'pypoll', 'analysis', 'results.txt')
+
+f = open(results, 'w')
+
+f.write("\nElection Results")
+
+f.write("\n----------------------------")
+f.write("\nTotal Votes: " + str(len(ID)))
+f.write("\n----------------------------")
+
+for c in candidate_votes:
+    percent = candidate_votes[c]/len(ID)*100
+    f.write("\n" + c + ": " + "%.2f" % percent + "% (" + str(candidate_votes[c]) + ")")
+
+f.write("\n----------------------------")
+f.write("\nWinner: "+ winner)
+f.write("\n----------------------------")
+
+f.close()
+
